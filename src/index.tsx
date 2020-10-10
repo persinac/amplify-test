@@ -5,14 +5,13 @@ import { App } from './Components/App/App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Amplify, API, Auth, Storage } from 'aws-amplify';
-
-const awsExports = require('@/aws-exports').default;
+import awsConfig from './aws-exports.js'
 
 Amplify.register(API)
 Amplify.register(Storage)
 Amplify.register(Auth)
 /* Register the services before configure */
-Amplify.configure(awsExports)
+Amplify.configure(awsConfig)
 
 ReactDOM.render(
     <App />,
