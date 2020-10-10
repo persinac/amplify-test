@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import * as firebase from "../../Firebase/firebase";
 import { Navigation } from '../Navigation/Navigation';
 import { SignUp } from '../SignUp';
