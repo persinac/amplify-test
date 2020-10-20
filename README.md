@@ -1,4 +1,4 @@
-# WRF Center Front End - React
+# WRF Center
 
 ## Resources
  - GRPC issue upon first `npm i`? Go [here](https://github.com/grpc/grpc-node/issues/1183)
@@ -7,6 +7,7 @@
 ## Setup
  - Setup via amplify [tutorial](https://docs.amplify.aws/start/q/integration/react)
     - Skipped the GraphQL and Auth layer for the time being. May migrate to AWS auth, using firebase auth right now
+ - GraphQL Setup for relational source [here](https://docs.amplify.aws/cli/graphql-transformer/relational)
  
 ## Dev/Local
  - `npm start dev` works just fine as long as you've `npm i` first
