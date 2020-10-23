@@ -6,7 +6,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDungeon} from '@fortawesome/free-solid-svg-icons';
 import {faSuperpowers} from "@fortawesome/free-brands-svg-icons";
 
-export default class AdminSideNav extends React.Component {
+interface IProps {
+	linkRenderHandler?: any;
+}
+
+export default class AdminSideNav extends React.Component<IProps, {}> {
 	render() {
 		return (this.returnSideNavBar());
 	}
@@ -19,7 +23,8 @@ export default class AdminSideNav extends React.Component {
 						<li className={"nav-item active"}>
 							<Link className={"nav-link"} to={ROUTES.ADMIN} onClick={(event) => {
 								this.removeActiveClasses();
-								(event.target as any).classList.toggle('active')
+								(event.target as any).classList.toggle('active');
+								this.props.linkRenderHandler(0)
 							}
 							}>
 								<span className={'floater-left margin-r-10'} id={'accord-icon-0'}>
@@ -29,15 +34,28 @@ export default class AdminSideNav extends React.Component {
 							</Link>
 						</li>
 						<li className={"nav-item"}>
-							<Link className={"nav-link"} to={ROUTES.ACCOUNT} onClick={(event) => {
+							{/*<Link className={"nav-link"} to={ROUTES.ACCOUNT} onClick={(event) => {*/}
+							{/*	this.removeActiveClasses();*/}
+							{/*	(event.target as any).classList.toggle('active')*/}
+							{/*}*/}
+							{/*}>*/}
+							{/*	<span className={'floater-left margin-r-10'} id={'accord-icon-0'}>*/}
+							{/*		<FontAwesomeIcon icon={faSuperpowers}/>*/}
+							{/*	</span>*/}
+							{/*	Orders</Link>*/}
+						</li>
+						<li className={"nav-item active"}>
+							<Link className={"nav-link"} to={ROUTES.ADMIN} onClick={(event) => {
 								this.removeActiveClasses();
-								(event.target as any).classList.toggle('active')
+								(event.target as any).classList.toggle('active');
+								this.props.linkRenderHandler(1)
 							}
 							}>
 								<span className={'floater-left margin-r-10'} id={'accord-icon-0'}>
 									<FontAwesomeIcon icon={faSuperpowers}/>
 								</span>
-								Orders</Link>
+								Inventory
+							</Link>
 						</li>
 					</ul>
 				</div>

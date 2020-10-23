@@ -1,0 +1,53 @@
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}
+
+input CreateWRFCENTER_R_DATAInput {
+  ID: Int!
+  TYPE: String
+  LABEL: String
+  IS_ACTIVE: Int
+  PARENT_ID: Int
+  SORT_ORDER: Int
+}
+
+type WRFCENTER_R_DATA {
+  ID: Int!
+  TYPE: String
+  LABEL: String
+  IS_ACTIVE: Int
+  PARENT_ID: Int
+  SORT_ORDER: Int
+}
+
+input UpdateWRFCENTER_R_DATAInput {
+  ID: Int!
+  TYPE: String
+  LABEL: String
+  IS_ACTIVE: Int
+  PARENT_ID: Int
+  SORT_ORDER: Int
+}
+
+type Mutation {
+  deleteWRFCENTER_R_DATA(ID: Int!): WRFCENTER_R_DATA
+  createWRFCENTER_R_DATA(createWRFCENTER_R_DATAInput: CreateWRFCENTER_R_DATAInput!): WRFCENTER_R_DATA
+  updateWRFCENTER_R_DATA(updateWRFCENTER_R_DATAInput: UpdateWRFCENTER_R_DATAInput!): WRFCENTER_R_DATA
+}
+
+type Query {
+  getWRFCENTER_R_DATA(ID: Int!): WRFCENTER_R_DATA
+  listWRFCENTER_R_DATAs: [WRFCENTER_R_DATA]
+}
+
+type Subscription {
+  onCreateWRFCENTER_R_DATA: WRFCENTER_R_DATA @aws_subscribe(mutations: ["createWRFCENTER_R_DATA"])
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
