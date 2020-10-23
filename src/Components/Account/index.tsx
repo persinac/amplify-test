@@ -14,8 +14,8 @@ export const AccountComponent = () => (
         {/*<h3>Environment: {process.env.REACT_APP_CURRENT_ENV}</h3>*/}
         {/*<h3>Environment: {process.env.REACT_APP_BASE_API_URL}</h3>*/}
         {/*<h5>Roles: {(authUser as any).roles}</h5>*/}
-        <PasswordForgetForm />
-        <PasswordChangeForm />
+        {/*<PasswordForgetForm />*/}
+        {/*<PasswordChangeForm />*/}
       </div>
     )}}
   </authUserContext.Consumer>

@@ -44,7 +44,7 @@ class NavigationComponent extends React.Component {
 	private returnAuthorizedLogin(isAdmin: boolean) {
 		return (
 			<Nav id={'primary-navbar'} className={'navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap p-0'}>
-				<div className={'navbar-brand col-sm-3 col-md-2 mr-0'}><a>Learning Ledger</a></div>
+				<div className={'navbar-brand col-sm-3 col-md-2 mr-0'}><a>WRF Center</a></div>
 				{/*<button className={"navbar-toggler"} type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 				        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className={"navbar-toggler-icon"}></span>
@@ -66,13 +66,13 @@ class NavigationComponent extends React.Component {
 							}>Account</Link>
 						</li>
 						{isAdmin ? this.showAdmin() : null}
-						<li className={"nav-item"}>
-							<Link className={"nav-link"} to={ROUTES.LIST_OF_ORDERS} onClick={(event) => {
-								this.removeActiveClasses();
-								(event.target as any).classList.toggle('active')
-							}
-							}>List of Orders</Link>
-						</li>
+						{/*<li className={"nav-item"}>*/}
+						{/*	<Link className={"nav-link"} to={ROUTES.LIST_OF_ORDERS} onClick={(event) => {*/}
+						{/*		this.removeActiveClasses();*/}
+						{/*		(event.target as any).classList.toggle('active')*/}
+						{/*	}*/}
+						{/*	}>List of Orders</Link>*/}
+						{/*</li>*/}
 					</ul>
 				</div>
 				<ul className={'navbar-nav px-3'}>
