@@ -1,0 +1,9 @@
+#set( $updateList = {} )
+#foreach( $entry in $ctx.args.updateWRFCENTER_R_DATAInput.keySet() )
+  #set( $discard = $updateList.put($entry, "'$ctx.args.updateWRFCENTER_R_DATAInput[$entry]'") )
+#end
+#set( $update = $updateList.toString().replace("{","").replace("}","") )
+{
+  "version": "2018-05-29",
+  "statements":   ["UPDATE WRFCENTER_R_DATA SET $update WHERE ID=$ctx.args.updateWRFCENTER_R_DATAInput.ID", "SELECT * FROM WRFCENTER_R_DATA WHERE ID=$ctx.args.updateWRFCENTER_R_DATAInput.ID"]
+}
