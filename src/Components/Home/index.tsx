@@ -1,6 +1,9 @@
 import React from "react";
-import { db } from "../../Firebase";
-import { withAuthorization } from "../../Firebase/withAuthorization";
+import {withAuthorization} from "../../Firebase/withAuthorization";
+import {API, graphqlOperation} from 'aws-amplify';
+import {listWrfcenterRDatAs} from '../../graphql/queries'
+
+const ax = require('axios').default;
 
 class HomeComponent extends React.Component {
   constructor(props: any) {
@@ -11,11 +14,7 @@ class HomeComponent extends React.Component {
     };
   }
 
-  public componentDidMount() {
-    // db.getUsers().then(snapshot =>
-    //   this.setState(() => ({ users: snapshot.val() }))
-    // );
-  }
+  public componentDidMount() { }
 
   public render() {
     return (
@@ -25,6 +24,15 @@ class HomeComponent extends React.Component {
       </div>
     );
   }
+}
+
+async function fetchTodos() {
+  try {
+    const listOfRefData = await API.graphql(graphqlOperation(listWrfcenterRDatAs));
+    // @ts-ignore
+    const refData = listOfRefData.data.listWRFCENTER_R_DATAs
+    console.log(refData);
+  } catch (err) { console.log('error fetching todos') }
 }
 
 const authCondition = (authUser: any) => { console.log(authUser); return !!authUser} ;

@@ -14,6 +14,18 @@ export interface QuestionValues {
 }
 
 /***
+ * Reference Data
+ * */
+export interface IReferenceData {
+	ID: number;
+	TYPE: string;
+	LABEL: string;
+	PARENT_ID: number;
+	SORT_ORDER: number;
+	IS_ACTIVE: number;
+}
+
+/***
  * Sorting / Paging
  */
 export interface IPagination {
