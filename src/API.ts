@@ -20,93 +20,49 @@ export type UpdateWRFCENTER_R_DATAInput = {
   SORT_ORDER?: number | null,
 };
 
-export type CreateTodoInput = {
-  id?: string | null,
-  name: string,
-  description?: string | null,
+export type CreateWRFCENTER_INVENTORY_AUDITInput = {
+  INVENTORY_AUDIT_ID: number,
+  INVENTORY_ITEM_ID: number,
+  QUANTITY?: number | null,
+  SUNSET?: number | null,
+  CREATED_BY: string,
+  CREATED_DATETIME: string,
+  LAST_MODIFIED_BY: string,
+  LAST_MODIFIED_DATETIME: string,
+  IS_ACTIVE?: number | null,
 };
 
-export type ModelTodoConditionInput = {
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
+export type UpdateWRFCENTER_INVENTORY_AUDITInput = {
+  INVENTORY_AUDIT_ID: number,
+  INVENTORY_ITEM_ID?: number | null,
+  QUANTITY?: number | null,
+  SUNSET?: number | null,
+  CREATED_BY?: string | null,
+  CREATED_DATETIME?: string | null,
+  LAST_MODIFIED_BY?: string | null,
+  LAST_MODIFIED_DATETIME?: string | null,
+  IS_ACTIVE?: number | null,
 };
 
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
+export type CreateWRFCENTER_INVENTORY_ITEMInput = {
+  R_INVENTORY_ITEM_ID: number,
+  QUANTITY?: number | null,
+  CREATED_BY: string,
+  CREATED_DATETIME: string,
+  LAST_MODIFIED_BY: string,
+  LAST_MODIFIED_DATETIME: string,
+  IS_ACTIVE?: number | null,
 };
 
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
-export type UpdateTodoInput = {
-  id: string,
-  name?: string | null,
-  description?: string | null,
-};
-
-export type DeleteTodoInput = {
-  id?: string | null,
-};
-
-export type ModelTodoFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
+export type UpdateWRFCENTER_INVENTORY_ITEMInput = {
+  INVENTORY_ITEM_ID: number,
+  R_INVENTORY_ITEM_ID?: number | null,
+  QUANTITY?: number | null,
+  CREATED_BY?: string | null,
+  CREATED_DATETIME?: string | null,
+  LAST_MODIFIED_BY?: string | null,
+  LAST_MODIFIED_DATETIME?: string | null,
+  IS_ACTIVE?: number | null,
 };
 
 export type DeleteWrfcenterRDataMutationVariables = {
@@ -157,51 +113,114 @@ export type UpdateWrfcenterRDataMutation = {
   } | null,
 };
 
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type DeleteWrfcenterInventoryAuditMutationVariables = {
+  INVENTORY_AUDIT_ID: number,
 };
 
-export type CreateTodoMutation = {
-  createTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
+export type DeleteWrfcenterInventoryAuditMutation = {
+  deleteWRFCENTER_INVENTORY_AUDIT:  {
+    __typename: "WRFCENTER_INVENTORY_AUDIT",
+    INVENTORY_AUDIT_ID: number,
+    INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    SUNSET: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
 };
 
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type CreateWrfcenterInventoryAuditMutationVariables = {
+  createWRFCENTER_INVENTORY_AUDITInput: CreateWRFCENTER_INVENTORY_AUDITInput,
 };
 
-export type UpdateTodoMutation = {
-  updateTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
+export type CreateWrfcenterInventoryAuditMutation = {
+  createWRFCENTER_INVENTORY_AUDIT:  {
+    __typename: "WRFCENTER_INVENTORY_AUDIT",
+    INVENTORY_AUDIT_ID: number,
+    INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    SUNSET: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
 };
 
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type UpdateWrfcenterInventoryAuditMutationVariables = {
+  updateWRFCENTER_INVENTORY_AUDITInput: UpdateWRFCENTER_INVENTORY_AUDITInput,
 };
 
-export type DeleteTodoMutation = {
-  deleteTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
+export type UpdateWrfcenterInventoryAuditMutation = {
+  updateWRFCENTER_INVENTORY_AUDIT:  {
+    __typename: "WRFCENTER_INVENTORY_AUDIT",
+    INVENTORY_AUDIT_ID: number,
+    INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    SUNSET: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
+  } | null,
+};
+
+export type DeleteWrfcenterInventoryItemMutationVariables = {
+  INVENTORY_ITEM_ID: number,
+};
+
+export type DeleteWrfcenterInventoryItemMutation = {
+  deleteWRFCENTER_INVENTORY_ITEM:  {
+    __typename: "WRFCENTER_INVENTORY_ITEM",
+    INVENTORY_ITEM_ID: number | null,
+    R_INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
+  } | null,
+};
+
+export type CreateWrfcenterInventoryItemMutationVariables = {
+  createWRFCENTER_INVENTORY_ITEMInput: CreateWRFCENTER_INVENTORY_ITEMInput,
+};
+
+export type CreateWrfcenterInventoryItemMutation = {
+  createWRFCENTER_INVENTORY_ITEM:  {
+    __typename: "WRFCENTER_INVENTORY_ITEM",
+    INVENTORY_ITEM_ID: number | null,
+    R_INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
+  } | null,
+};
+
+export type UpdateWrfcenterInventoryItemMutationVariables = {
+  updateWRFCENTER_INVENTORY_ITEMInput: UpdateWRFCENTER_INVENTORY_ITEMInput,
+};
+
+export type UpdateWrfcenterInventoryItemMutation = {
+  updateWRFCENTER_INVENTORY_ITEM:  {
+    __typename: "WRFCENTER_INVENTORY_ITEM",
+    INVENTORY_ITEM_ID: number | null,
+    R_INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
 };
 
@@ -233,40 +252,70 @@ export type ListWrfcenterRDatAsQuery = {
   } | null > | null,
 };
 
-export type GetTodoQueryVariables = {
-  id: string,
+export type GetWrfcenterInventoryAuditQueryVariables = {
+  INVENTORY_AUDIT_ID: number,
 };
 
-export type GetTodoQuery = {
-  getTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
+export type GetWrfcenterInventoryAuditQuery = {
+  getWRFCENTER_INVENTORY_AUDIT:  {
+    __typename: "WRFCENTER_INVENTORY_AUDIT",
+    INVENTORY_AUDIT_ID: number,
+    INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    SUNSET: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
 };
 
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type ListWrfcenterInventoryAudiTsQuery = {
+  listWRFCENTER_INVENTORY_AUDITs:  Array< {
+    __typename: "WRFCENTER_INVENTORY_AUDIT",
+    INVENTORY_AUDIT_ID: number,
+    INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    SUNSET: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
+  } | null > | null,
 };
 
-export type ListTodosQuery = {
-  listTodos:  {
-    __typename: "ModelTodoConnection",
-    items:  Array< {
-      __typename: "Todo",
-      id: string,
-      name: string,
-      description: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
+export type GetWrfcenterInventoryItemQueryVariables = {
+  INVENTORY_ITEM_ID: number,
+};
+
+export type GetWrfcenterInventoryItemQuery = {
+  getWRFCENTER_INVENTORY_ITEM:  {
+    __typename: "WRFCENTER_INVENTORY_ITEM",
+    INVENTORY_ITEM_ID: number | null,
+    R_INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
+};
+
+export type ListWrfcenterInventoryIteMsQuery = {
+  listWRFCENTER_INVENTORY_ITEMs:  Array< {
+    __typename: "WRFCENTER_INVENTORY_ITEM",
+    INVENTORY_ITEM_ID: number | null,
+    R_INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
+  } | null > | null,
 };
 
 export type OnCreateWrfcenterRDataSubscription = {
@@ -281,35 +330,31 @@ export type OnCreateWrfcenterRDataSubscription = {
   } | null,
 };
 
-export type OnCreateTodoSubscription = {
-  onCreateTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
+export type OnCreateWrfcenterInventoryAuditSubscription = {
+  onCreateWRFCENTER_INVENTORY_AUDIT:  {
+    __typename: "WRFCENTER_INVENTORY_AUDIT",
+    INVENTORY_AUDIT_ID: number,
+    INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    SUNSET: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
 };
 
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
-    createdAt: string,
-    updatedAt: string,
+export type OnCreateWrfcenterInventoryItemSubscription = {
+  onCreateWRFCENTER_INVENTORY_ITEM:  {
+    __typename: "WRFCENTER_INVENTORY_ITEM",
+    INVENTORY_ITEM_ID: number | null,
+    R_INVENTORY_ITEM_ID: number,
+    QUANTITY: number | null,
+    CREATED_BY: string,
+    CREATED_DATETIME: string,
+    LAST_MODIFIED_BY: string,
+    LAST_MODIFIED_DATETIME: string,
+    IS_ACTIVE: number | null,
   } | null,
 };

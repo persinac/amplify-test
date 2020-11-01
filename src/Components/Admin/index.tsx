@@ -8,6 +8,8 @@ import AdminSideNav from "../Navigation/AdminSideNav";
 import {Component} from "react";
 import {fetchListOfRefData} from "../../Utility/GraphQLRequests/referenceData";
 import {ListOfReferenceData} from "../ListOfReferenceData/ListOfReferenceData";
+import {ListOfInventoryItems} from "../InventoryManagement/ListOfInventoryItems";
+import {authUserContext} from "../../Firebase/AuthUserContext";
 
 interface IState {
 	navbarHeight: string;
@@ -44,7 +46,7 @@ class AdminComponent extends React.Component<{}, IState> {
 				<div className={'row height-100'}>
 					<AdminSideNav linkRenderHandler={this.linkClickRender}/>
 					<main role={'main'} className={'col-md-9 ml-sm-auto col-lg-10 pt-3 px-4'}>
-						<div>
+						<div style={{height: `100%`, width: `100%`}}>
 							{whatToRender === 1 ? this.renderListOfReferenceData() : null}
 						</div>
 					</main>
@@ -60,7 +62,12 @@ class AdminComponent extends React.Component<{}, IState> {
 	}
 
 	private renderListOfReferenceData() {
-		return <ListOfReferenceData fromAdmin={true}/>
+		return (<authUserContext.Consumer>
+			{authUser => {
+				return <ListOfInventoryItems fromAdmin={true} authUser={authUser}/>
+			}}
+			</authUserContext.Consumer>
+		)
 	}
 }
 

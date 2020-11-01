@@ -1,5 +1,3 @@
-import DateTimeFormat = Intl.DateTimeFormat;
-
 export interface IAppState {
 	authUser: any;
 }
@@ -22,6 +20,17 @@ export interface IReferenceData {
 	LABEL: string;
 	PARENT_ID: number;
 	SORT_ORDER: number;
+	IS_ACTIVE: number;
+}
+
+export interface IInventoryItem {
+	INVENTORY_ITEM_ID: number;
+	R_INVENTORY_ITEM_ID: number;
+	QUANTITY: number;
+	CREATED_BY: string;
+	CREATED_DATETIME: Date;
+	LAST_MODIFIED_BY: string;
+	LAST_MODIFIED_DATETIME: Date;
 	IS_ACTIVE: number;
 }
 
