@@ -1,6 +1,7 @@
 import {API, graphqlOperation} from "aws-amplify";
 import {listWrfcenterInventoryIteMs} from "../../graphql/queries";
 import {createWrfcenterInventoryItem, updateWrfcenterInventoryItem} from "../../graphql/mutations";
+import {ICreateInventoryItem, IInventoryItem} from "../../State";
 
 export async function fetchListOfInventoryItem() {
     try {
@@ -12,20 +13,20 @@ export async function fetchListOfInventoryItem() {
     } catch (err) { console.log('error fetching inventory item data') }
 }
 
-export async function createInventoryItem(newInvItem: any) {
+export async function createInventoryItem(newInvItem: IInventoryItem) {
     try {
-        console.log(newInvItem);
+        let transformedInvItem: ICreateInventoryItem = {
+            R_INVENTORY_ITEM_ID: newInvItem.R_INVENTORY_ITEM_ID,
+            QUANTITY: newInvItem.QUANTITY,
+            CREATED_BY: newInvItem.CREATED_BY,
+            CREATED_DATETIME: newInvItem.CREATED_DATETIME,
+            LAST_MODIFIED_BY: newInvItem.LAST_MODIFIED_BY,
+            LAST_MODIFIED_DATETIME: newInvItem.LAST_MODIFIED_DATETIME,
+            IS_ACTIVE: newInvItem.IS_ACTIVE
+        }
+        console.log(transformedInvItem);
         const postNewInvItem = await API.graphql({
-            query: createWrfcenterInventoryItem, variables: {data:{
-                INVENTORY_ITEM_ID: 1,
-                R_INVENTORY_ITEM_ID: 1,
-                QUANTITY: 0,
-                CREATED_BY: "SYSTEM",
-                CREATED_DATETIME: new Date(),
-                LAST_MODIFIED_BY: "SYSTEM",
-                LAST_MODIFIED_DATETIME: new Date(),
-                IS_ACTIVE: 1
-            }}
+            query: createWrfcenterInventoryItem, variables: { createWRFCENTER_INVENTORY_ITEMInput: transformedInvItem}
         });
         // @ts-ignore
         console.log(postNewInvItem);
@@ -37,10 +38,25 @@ export async function createInventoryItem(newInvItem: any) {
     }
 }
 
-export async function updateInventoryItem(updateInvItem: any) {
+export async function updateInventoryItem(updateInvItem: IInventoryItem, authUser: any) {
     try {
-        console.log(updateInvItem);
-        const postUpdatedInvItem = await API.graphql(graphqlOperation(updateWrfcenterInventoryItem, {input: updateInvItem}));
+        console.log(authUser);
+        let tempDate = new Date();
+        let formatted_date =
+            tempDate.getFullYear() + "-"
+            + (tempDate.getMonth() + 1) + "-"
+            + tempDate.getDate() + " "
+            + tempDate.getHours() + ":"
+            + tempDate.getMinutes() + ":"
+            + tempDate.getSeconds();
+        updateInvItem.LAST_MODIFIED_BY = authUser.username;
+        updateInvItem.LAST_MODIFIED_DATETIME = formatted_date;
+        const postUpdatedInvItem = await API.graphql(
+            graphqlOperation(updateWrfcenterInventoryItem,
+                {
+                    $updateWRFCENTER_INVENTORY_ITEMInput: updateInvItem}
+                )
+        );
         // @ts-ignore
         console.log(postUpdatedInvItem);
         // @ts-ignore

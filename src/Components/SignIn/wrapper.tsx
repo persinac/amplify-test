@@ -62,16 +62,24 @@ export class Wrapper extends React.Component<InterfaceProps, InterfaceState> {
 					<Card className={'signin-card'}>
 						<div className="card-header">
 							<h3>Sign In</h3>
-							<div className="d-flex justify-content-end social_icon">
+							{/*<div className="d-flex justify-content-end social_icon">*/}
+							{/*	<GoogleSignIn*/}
+							{/*		history={this.props.history}*/}
+							{/*	/>*/}
+							{/*</div>*/}
+						</div>
+						<div className="card-body">
+							<div className={"margin-b-10"}>
 								<GoogleSignIn
 									history={this.props.history}
 								/>
 							</div>
-						</div>
-						<div className="card-body">
-							<SignInForm
-								history={this.props.history}
-							/>
+							<div>
+								<SignInForm
+									history={this.props.history}
+								/>
+							</div>
+
 						</div>
 						<div className="card-footer">
 							<SignUpLink />

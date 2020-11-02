@@ -28,9 +28,19 @@ export interface IInventoryItem {
 	R_INVENTORY_ITEM_ID: number;
 	QUANTITY: number;
 	CREATED_BY: string;
-	CREATED_DATETIME: Date;
+	CREATED_DATETIME: string;
 	LAST_MODIFIED_BY: string;
-	LAST_MODIFIED_DATETIME: Date;
+	LAST_MODIFIED_DATETIME: string;
+	IS_ACTIVE: number;
+}
+
+export interface ICreateInventoryItem {
+	R_INVENTORY_ITEM_ID: number;
+	QUANTITY: number;
+	CREATED_BY: string;
+	CREATED_DATETIME: string;
+	LAST_MODIFIED_BY: string;
+	LAST_MODIFIED_DATETIME: string;
 	IS_ACTIVE: number;
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {CallbackButton} from "./CallbackButton";
 import {createInventoryItem, updateInventoryItem} from "../../Utility/GraphQLRequests/inventoryItem";
+import {authUserContext} from "../../Firebase/AuthUserContext";
 
 export default class ChildMessageRenderer extends Component {
     constructor(props: any) {
@@ -9,14 +10,11 @@ export default class ChildMessageRenderer extends Component {
         this.saveUpdates = this.saveUpdates.bind(this);
     }
 
-    saveUpdates() {
-        console.log(this.props);
-        // @ts-ignore
-        console.log(`Saving Row: ${this.props.node.rowIndex}, Col: ${this.props.colDef.headerName}`);
+    saveUpdates(authUser: any) {
         // @ts-ignore
         if(this.props.data.INVENTORY_ITEM_ID !== undefined && this.props.data.INVENTORY_ITEM_ID !== null) {
             // @ts-ignore
-            updateInventoryItem(this.props.data)
+            updateInventoryItem(this.props.data, authUser)
                 .then((res) => {
                     console.log(res);
                 })
@@ -37,9 +35,17 @@ export default class ChildMessageRenderer extends Component {
 
     render() {
         return (
-            <span>
-                <CallbackButton text={"Save Update"} callback={() => {this.saveUpdates()}}/>
-            </span>
+            <authUserContext.Consumer>
+                {authUser => {
+                    return (
+                        <span>
+                            <CallbackButton text={"Save Update"} callback={() => {
+                                this.saveUpdates(authUser);
+                            }}/>
+                        </span>
+                    )
+                }}
+            </authUserContext.Consumer>
         );
     }
 }

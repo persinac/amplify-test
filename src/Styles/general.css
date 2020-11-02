@@ -65,6 +65,10 @@
     margin-right: 10px;
 }
 
+.margin-b-10 {
+    margin-bottom: 10px;
+}
+
 a {
     cursor: pointer;
 }

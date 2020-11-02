@@ -53,14 +53,14 @@ export class ListOfInventoryItems extends React.Component<InterfaceProps, IState
                     autoHeight:true
                 },
                 {
-                    headerName: 'ITEM TYPE',
+                    headerName: 'Item Type',
                     field: 'R_INVENTORY_ITEM_ID',
                     editable: true,
                     colId: 'R_INVENTORY_ITEM_ID',
                     autoHeight: true
                 },
                 {
-                    headerName: 'QUANTITY',
+                    headerName: 'Quantity',
                     field: 'QUANTITY',
                     editable: true,
                     colId: 'QUANTITY',
@@ -170,24 +170,32 @@ export class ListOfInventoryItems extends React.Component<InterfaceProps, IState
 
     private addAnItem(refData: IInventoryItem[]): IInventoryItem[] {
         let newList = refData.slice();
+        let tempDate = new Date();
+        let formatted_date =
+            tempDate.getFullYear() + "-"
+            + (tempDate.getMonth() + 1) + "-"
+            + tempDate.getDate() + " "
+            + tempDate.getHours() + ":"
+            + tempDate.getMinutes() + ":"
+            + tempDate.getSeconds();
         newList.push({
             INVENTORY_ITEM_ID: null,
             R_INVENTORY_ITEM_ID: 1,
             QUANTITY: 0,
-            CREATED_BY: "SYSTEM",
-            CREATED_DATETIME: new Date(),
-            LAST_MODIFIED_BY: "SYSTEM",
-            LAST_MODIFIED_DATETIME: new Date(),
+            CREATED_BY: this.props.authUser.username,
+            CREATED_DATETIME: formatted_date,
+            LAST_MODIFIED_BY: this.props.authUser.username,
+            LAST_MODIFIED_DATETIME: formatted_date,
             IS_ACTIVE: 1
         });
         return newList;
     }
 
     private reset() {
-        fetchListOfRefData()
+        fetchListOfInventoryItem()
             .then((res: any) => {
                 console.log(res);
-                this.setState({referenceData: res})
+                this.setState({inventoryItem: res})
             })
             .catch((err: any) => {
                 console.log(err);
@@ -248,27 +256,6 @@ export class ListOfInventoryItems extends React.Component<InterfaceProps, IState
     //         </div>
     //     );
     // }
-
-    private buildProductHeaderTRs() {
-        const {referenceData} = this.state;
-        if (!!referenceData && referenceData.length > 0) {
-            return referenceData.map((ts: IReferenceData) => {
-                return (
-                    <tr key={ts.ID}>
-                        <td>{ts.ID}</td>
-                        <td>{ts.TYPE}</td>
-                        <td>{ts.LABEL}</td>
-                        <td>{ts.PARENT_ID}</td>
-                        <td>{ts.SORT_ORDER}</td>
-                        <td>{ts.IS_ACTIVE}</td>
-                        {/*<td>*/}
-                        {/*    <CallbackButton callback={() => {this.loadSummaryDetails(ts.testSummaryID)}} text={"View"} theme={"info"}/>*/}
-                        {/*</td>*/}
-                    </tr>
-                )
-            });
-        }
-    }
 
     private pageThroughTable(direction: string) {
         let {paging, sorting} = this.state;

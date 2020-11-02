@@ -47,7 +47,7 @@ class NavigationComponent extends React.Component {
 				<Navbar.Brand as={Link} to={ROUTES.HOME}>WRF Center</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="navbarSupportedContent">
-					<Nav className="mr-auto">
+					<Nav className="mr-auto width-100">
 						<Nav.Link
 							eventKey="1"
 							as={Link}
@@ -68,6 +68,7 @@ class NavigationComponent extends React.Component {
 							}>Account</Nav.Link>
 						{isAdmin ? this.showAdmin() : null}
 						<Nav.Link
+							className={"ml-auto"}
 							eventKey="4"
 							onClick={(event: any) => {
 								this.removeActiveClasses();
