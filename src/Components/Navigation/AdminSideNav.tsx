@@ -16,7 +16,6 @@ export default class AdminSideNav extends React.Component<IProps, {}> {
 	}
 
 	private returnSideNavBar() {
-		console.log("side bar?")
 		return (
 			<Nav className={'col-md-2 d-md-block bg-light sidebar'}>
 				<div className={'sidebar-sticky'} id="navbarSupportedContent">

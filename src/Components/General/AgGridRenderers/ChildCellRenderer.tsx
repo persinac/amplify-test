@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {CallbackButton} from "./CallbackButton";
-import {createInventoryItem, updateInventoryItem} from "../../Utility/GraphQLRequests/inventoryItem";
-import {authUserContext} from "../../Firebase/AuthUserContext";
+import {CallbackButton} from "../CallbackButton";
+import {createInventoryItem, updateInventoryItem} from "../../../Utility/GraphQLRequests/inventoryItem";
+import {authUserContext} from "../../../Firebase/AuthUserContext";
 
 export default class ChildMessageRenderer extends Component {
     constructor(props: any) {
@@ -39,7 +39,7 @@ export default class ChildMessageRenderer extends Component {
                 {authUser => {
                     return (
                         <span>
-                            <CallbackButton text={"Save Update"} callback={() => {
+                            <CallbackButton text={"Save Changes"} callback={() => {
                                 this.saveUpdates(authUser);
                             }}/>
                         </span>

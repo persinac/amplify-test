@@ -10,12 +10,14 @@ import {fetchListOfRefData} from "../../Utility/GraphQLRequests/referenceData";
 import {ListOfReferenceData} from "../ListOfReferenceData/ListOfReferenceData";
 import {ListOfInventoryItems} from "../InventoryManagement/ListOfInventoryItems";
 import {authUserContext} from "../../Firebase/AuthUserContext";
+import {IReferenceData} from "../../State";
 
 interface IState {
 	navbarHeight: string;
 	users: any;
 	data: any;
 	whatToRender?: number;
+	referenceData?: IReferenceData[];
 }
 
 
@@ -32,8 +34,20 @@ class AdminComponent extends React.Component<{}, IState> {
 	}
 
 	public componentDidMount() {
+		this.setState({
+			navbarHeight: window.getComputedStyle(document.getElementById('primary-navbar'), null).getPropertyValue("height")
+		});
+		fetchListOfRefData()
+			.then((res) => {
+				// console.log(res);
+				this.setState({
+					referenceData: res,
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			})
 
-		this.setState({navbarHeight: window.getComputedStyle(document.getElementById('primary-navbar'), null).getPropertyValue("height")})
 	}
 
 	public render() {
@@ -64,7 +78,7 @@ class AdminComponent extends React.Component<{}, IState> {
 	private renderListOfReferenceData() {
 		return (<authUserContext.Consumer>
 			{authUser => {
-				return <ListOfInventoryItems fromAdmin={true} authUser={authUser}/>
+				return <ListOfInventoryItems fromAdmin={true} authUser={authUser} referenceData={this.state.referenceData}/>
 			}}
 			</authUserContext.Consumer>
 		)

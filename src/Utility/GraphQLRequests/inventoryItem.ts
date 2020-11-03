@@ -7,8 +7,6 @@ export async function fetchListOfInventoryItem() {
     try {
         const listOfInvItem = await API.graphql(graphqlOperation(listWrfcenterInventoryIteMs));
         // @ts-ignore
-        console.log(listOfInvItem.data.listWRFCENTER_INVENTORY_ITEMs);
-        // @ts-ignore
         return listOfInvItem.data.listWRFCENTER_INVENTORY_ITEMs
     } catch (err) { console.log('error fetching inventory item data') }
 }
@@ -24,14 +22,9 @@ export async function createInventoryItem(newInvItem: IInventoryItem) {
             LAST_MODIFIED_DATETIME: newInvItem.LAST_MODIFIED_DATETIME,
             IS_ACTIVE: newInvItem.IS_ACTIVE
         }
-        console.log(transformedInvItem);
-        const postNewInvItem = await API.graphql({
+        return await API.graphql({
             query: createWrfcenterInventoryItem, variables: { createWRFCENTER_INVENTORY_ITEMInput: transformedInvItem}
         });
-        // @ts-ignore
-        console.log(postNewInvItem);
-        // @ts-ignore
-        return postNewInvItem;
     } catch (err) {
         console.log('error adding inventory item data');
         console.log(err);
@@ -40,7 +33,6 @@ export async function createInventoryItem(newInvItem: IInventoryItem) {
 
 export async function updateInventoryItem(updateInvItem: IInventoryItem, authUser: any) {
     try {
-        console.log(authUser);
         let tempDate = new Date();
         let formatted_date =
             tempDate.getFullYear() + "-"
@@ -51,16 +43,12 @@ export async function updateInventoryItem(updateInvItem: IInventoryItem, authUse
             + tempDate.getSeconds();
         updateInvItem.LAST_MODIFIED_BY = authUser.username;
         updateInvItem.LAST_MODIFIED_DATETIME = formatted_date;
-        const postUpdatedInvItem = await API.graphql(
+        return await API.graphql(
             graphqlOperation(updateWrfcenterInventoryItem,
                 {
-                    $updateWRFCENTER_INVENTORY_ITEMInput: updateInvItem}
+                    updateWRFCENTER_INVENTORY_ITEMInput: updateInvItem}
                 )
         );
-        // @ts-ignore
-        console.log(postUpdatedInvItem);
-        // @ts-ignore
-        return postUpdatedInvItem;
     } catch (err) {
         console.log('error updating inventory item data');
         console.log(err);
