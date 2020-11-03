@@ -26,8 +26,8 @@ export class Wrapper extends React.Component<InterfaceProps, InterfaceState> {
 		return (
 			<authUserContext.Consumer>
 				{authUser => {
-					console.log(`History: ${this.props.history.location.pathname}`);
-					console.log(authUser);
+					// console.log(`History: ${this.props.history.location.pathname}`);
+					// console.log(authUser);
 					if(this.props.history.location.pathname === '/pw-forget' || this.props.history.location.pathname === '/signup') {
 						// return <BackToSignIn />
 						return null;
@@ -62,16 +62,24 @@ export class Wrapper extends React.Component<InterfaceProps, InterfaceState> {
 					<Card className={'signin-card'}>
 						<div className="card-header">
 							<h3>Sign In</h3>
-							<div className="d-flex justify-content-end social_icon">
+							{/*<div className="d-flex justify-content-end social_icon">*/}
+							{/*	<GoogleSignIn*/}
+							{/*		history={this.props.history}*/}
+							{/*	/>*/}
+							{/*</div>*/}
+						</div>
+						<div className="card-body">
+							<div className={"margin-b-10"}>
 								<GoogleSignIn
 									history={this.props.history}
 								/>
 							</div>
-						</div>
-						<div className="card-body">
-							<SignInForm
-								history={this.props.history}
-							/>
+							<div>
+								<SignInForm
+									history={this.props.history}
+								/>
+							</div>
+
 						</div>
 						<div className="card-footer">
 							<SignUpLink />

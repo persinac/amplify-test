@@ -46,45 +46,106 @@ export const updateWrfcenterRData = /* GraphQL */ `
     }
   }
 `;
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    createTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
+export const deleteWrfcenterInventoryAudit = /* GraphQL */ `
+  mutation DeleteWrfcenterInventoryAudit($INVENTORY_AUDIT_ID: Int!) {
+    deleteWRFCENTER_INVENTORY_AUDIT(INVENTORY_AUDIT_ID: $INVENTORY_AUDIT_ID) {
+      INVENTORY_AUDIT_ID
+      INVENTORY_ITEM_ID
+      QUANTITY
+      SUNSET
+      CREATED_BY
+      CREATED_DATETIME
+      LAST_MODIFIED_BY
+      LAST_MODIFIED_DATETIME
+      IS_ACTIVE
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createWrfcenterInventoryAudit = /* GraphQL */ `
+  mutation CreateWrfcenterInventoryAudit(
+    $createWRFCENTER_INVENTORY_AUDITInput: CreateWRFCENTER_INVENTORY_AUDITInput!
   ) {
-    updateTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
+    createWRFCENTER_INVENTORY_AUDIT(
+      createWRFCENTER_INVENTORY_AUDITInput: $createWRFCENTER_INVENTORY_AUDITInput
+    ) {
+      INVENTORY_AUDIT_ID
+      INVENTORY_ITEM_ID
+      QUANTITY
+      SUNSET
+      CREATED_BY
+      CREATED_DATETIME
+      LAST_MODIFIED_BY
+      LAST_MODIFIED_DATETIME
+      IS_ACTIVE
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateWrfcenterInventoryAudit = /* GraphQL */ `
+  mutation UpdateWrfcenterInventoryAudit(
+    $updateWRFCENTER_INVENTORY_AUDITInput: UpdateWRFCENTER_INVENTORY_AUDITInput!
   ) {
-    deleteTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
+    updateWRFCENTER_INVENTORY_AUDIT(
+      updateWRFCENTER_INVENTORY_AUDITInput: $updateWRFCENTER_INVENTORY_AUDITInput
+    ) {
+      INVENTORY_AUDIT_ID
+      INVENTORY_ITEM_ID
+      QUANTITY
+      SUNSET
+      CREATED_BY
+      CREATED_DATETIME
+      LAST_MODIFIED_BY
+      LAST_MODIFIED_DATETIME
+      IS_ACTIVE
+    }
+  }
+`;
+export const deleteWrfcenterInventoryItem = /* GraphQL */ `
+  mutation DeleteWrfcenterInventoryItem($INVENTORY_ITEM_ID: Int!) {
+    deleteWRFCENTER_INVENTORY_ITEM(INVENTORY_ITEM_ID: $INVENTORY_ITEM_ID) {
+      INVENTORY_ITEM_ID
+      R_INVENTORY_ITEM_ID
+      QUANTITY
+      CREATED_BY
+      CREATED_DATETIME
+      LAST_MODIFIED_BY
+      LAST_MODIFIED_DATETIME
+      IS_ACTIVE
+    }
+  }
+`;
+export const createWrfcenterInventoryItem = /* GraphQL */ `
+  mutation CreateWrfcenterInventoryItem(
+    $createWRFCENTER_INVENTORY_ITEMInput: CreateWRFCENTER_INVENTORY_ITEMInput!
+  ) {
+    createWRFCENTER_INVENTORY_ITEM(
+      createWRFCENTER_INVENTORY_ITEMInput: $createWRFCENTER_INVENTORY_ITEMInput
+    ) {
+      INVENTORY_ITEM_ID
+      R_INVENTORY_ITEM_ID
+      QUANTITY
+      CREATED_BY
+      CREATED_DATETIME
+      LAST_MODIFIED_BY
+      LAST_MODIFIED_DATETIME
+      IS_ACTIVE
+    }
+  }
+`;
+export const updateWrfcenterInventoryItem = /* GraphQL */ `
+  mutation UpdateWrfcenterInventoryItem(
+    $updateWRFCENTER_INVENTORY_ITEMInput: UpdateWRFCENTER_INVENTORY_ITEMInput!
+  ) {
+    updateWRFCENTER_INVENTORY_ITEM(
+      updateWRFCENTER_INVENTORY_ITEMInput: $updateWRFCENTER_INVENTORY_ITEMInput
+    ) {
+      INVENTORY_ITEM_ID
+      R_INVENTORY_ITEM_ID
+      QUANTITY
+      CREATED_BY
+      CREATED_DATETIME
+      LAST_MODIFIED_BY
+      LAST_MODIFIED_DATETIME
+      IS_ACTIVE
     }
   }
 `;

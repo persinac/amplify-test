@@ -89,9 +89,11 @@ export class GoogleSignIn extends React.Component<InterfaceProps, InterfaceState
 		return (
 
 			<form onClick={e => this.onSubmit(e)}>
-            <span>
-              <FontAwesomeIcon icon={faGoogle}/>
-            </span>
+				<button type="submit" className="btn login_btn width-100">
+					<span>
+						Sign in with Google <FontAwesomeIcon icon={faGoogle}/>
+            		</span>
+				</button>
 				{error && <p>{error.message}</p>}
 			</form>
 		);

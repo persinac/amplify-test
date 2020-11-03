@@ -17,7 +17,7 @@ export default class AdminSideNav extends React.Component<IProps, {}> {
 
 	private returnSideNavBar() {
 		return (
-			<Nav className={'col-md-2 d-none d-md-block bg-light sidebar'}>
+			<Nav className={'col-md-2 d-md-block bg-light sidebar'}>
 				<div className={'sidebar-sticky'} id="navbarSupportedContent">
 					<ul className={'nav flex-column'}>
 						<li className={"nav-item active"}>
@@ -32,17 +32,6 @@ export default class AdminSideNav extends React.Component<IProps, {}> {
 								</span>
 								Dashboard
 							</Link>
-						</li>
-						<li className={"nav-item"}>
-							{/*<Link className={"nav-link"} to={ROUTES.ACCOUNT} onClick={(event) => {*/}
-							{/*	this.removeActiveClasses();*/}
-							{/*	(event.target as any).classList.toggle('active')*/}
-							{/*}*/}
-							{/*}>*/}
-							{/*	<span className={'floater-left margin-r-10'} id={'accord-icon-0'}>*/}
-							{/*		<FontAwesomeIcon icon={faSuperpowers}/>*/}
-							{/*	</span>*/}
-							{/*	Orders</Link>*/}
 						</li>
 						<li className={"nav-item active"}>
 							<Link className={"nav-link"} to={ROUTES.ADMIN} onClick={(event) => {

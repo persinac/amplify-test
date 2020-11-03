@@ -8,12 +8,16 @@ import AdminSideNav from "../Navigation/AdminSideNav";
 import {Component} from "react";
 import {fetchListOfRefData} from "../../Utility/GraphQLRequests/referenceData";
 import {ListOfReferenceData} from "../ListOfReferenceData/ListOfReferenceData";
+import {ListOfInventoryItems} from "../InventoryManagement/ListOfInventoryItems";
+import {authUserContext} from "../../Firebase/AuthUserContext";
+import {IReferenceData} from "../../State";
 
 interface IState {
 	navbarHeight: string;
 	users: any;
 	data: any;
 	whatToRender?: number;
+	referenceData?: IReferenceData[];
 }
 
 
@@ -30,8 +34,20 @@ class AdminComponent extends React.Component<{}, IState> {
 	}
 
 	public componentDidMount() {
+		this.setState({
+			navbarHeight: window.getComputedStyle(document.getElementById('primary-navbar'), null).getPropertyValue("height")
+		});
+		fetchListOfRefData()
+			.then((res) => {
+				// console.log(res);
+				this.setState({
+					referenceData: res,
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			})
 
-		this.setState({navbarHeight: window.getComputedStyle(document.getElementById('primary-navbar'), null).getPropertyValue("height")})
 	}
 
 	public render() {
@@ -44,7 +60,7 @@ class AdminComponent extends React.Component<{}, IState> {
 				<div className={'row height-100'}>
 					<AdminSideNav linkRenderHandler={this.linkClickRender}/>
 					<main role={'main'} className={'col-md-9 ml-sm-auto col-lg-10 pt-3 px-4'}>
-						<div>
+						<div style={{height: `100%`, width: `100%`}}>
 							{whatToRender === 1 ? this.renderListOfReferenceData() : null}
 						</div>
 					</main>
@@ -60,7 +76,12 @@ class AdminComponent extends React.Component<{}, IState> {
 	}
 
 	private renderListOfReferenceData() {
-		return <ListOfReferenceData fromAdmin={true}/>
+		return (<authUserContext.Consumer>
+			{authUser => {
+				return <ListOfInventoryItems fromAdmin={true} authUser={authUser} referenceData={this.state.referenceData}/>
+			}}
+			</authUserContext.Consumer>
+		)
 	}
 }
 

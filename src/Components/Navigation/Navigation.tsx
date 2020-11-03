@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import * as ROUTES from '../../Constants/routes';
 import {SignOut} from '../SignOut';
 import {authUserContext} from '../../Firebase/AuthUserContext';
-import Nav from "react-bootstrap/Nav";
+import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import * as ROLES from "../../Constants/roles";
 
 interface INavState {
@@ -43,44 +43,43 @@ class NavigationComponent extends React.Component {
 
 	private returnAuthorizedLogin(isAdmin: boolean) {
 		return (
-			<Nav id={'primary-navbar'} className={'navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-md-nowrap p-0'}>
-				<div className={'navbar-brand col-sm-3 col-md-2 mr-0'}><a>WRF Center</a></div>
-				{/*<button className={"navbar-toggler"} type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span className={"navbar-toggler-icon"}></span>
-				</button>*/}
-				<div className={'navbar-collapse'} id="navbarSupportedContent">
-					<ul className={'navbar-nav mr-auto'}>
-						<li className={"nav-item active"}>
-							<Link className={"nav-link"} to={ROUTES.HOME} onClick={(event) => {
+			<Navbar id={'primary-navbar'} className={'navbar-dark sticky-top bg-dark flex-md-nowrap p-0'} expand={"lg"}>
+				<Navbar.Brand as={Link} to={ROUTES.HOME}>WRF Center</Navbar.Brand>
+				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Collapse id="navbarSupportedContent">
+					<Nav className="mr-auto width-100">
+						<Nav.Link
+							eventKey="1"
+							as={Link}
+							to={ROUTES.HOME}
+							onClick={(event: any) => {
 								this.removeActiveClasses();
 								(event.target as any).classList.toggle('active')
 							}
-							}>Home</Link>
-						</li>
-						<li className={"nav-item"}>
-							<Link className={"nav-link"} to={ROUTES.ACCOUNT} onClick={(event) => {
+						}>Home</Nav.Link>
+						<Nav.Link
+							eventKey="2"
+							as={Link}
+							to={ROUTES.ACCOUNT}
+							onClick={(event: any) => {
 								this.removeActiveClasses();
 								(event.target as any).classList.toggle('active')
 							}
-							}>Account</Link>
-						</li>
+							}>Account</Nav.Link>
 						{isAdmin ? this.showAdmin() : null}
-						{/*<li className={"nav-item"}>*/}
-						{/*	<Link className={"nav-link"} to={ROUTES.LIST_OF_ORDERS} onClick={(event) => {*/}
-						{/*		this.removeActiveClasses();*/}
-						{/*		(event.target as any).classList.toggle('active')*/}
-						{/*	}*/}
-						{/*	}>List of Orders</Link>*/}
-						{/*</li>*/}
-					</ul>
-				</div>
-				<ul className={'navbar-nav px-3'}>
-					<li className={'nav-item text-nowrap'}>
-						<SignOut/>
-					</li>
-				</ul>
-			</Nav>
+						<Nav.Link
+							className={"ml-auto"}
+							eventKey="4"
+							onClick={(event: any) => {
+								this.removeActiveClasses();
+								(event.target as any).classList.toggle('active')
+							}
+							}>
+							<SignOut/>
+						</Nav.Link>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
 		)
 	}
 
@@ -91,13 +90,17 @@ class NavigationComponent extends React.Component {
 	}
 
 	private showAdmin() {
-		return (<li className={"nav-item"}>
-			<Link className={"nav-link"} to={ROUTES.ADMIN} onClick={(event) => {
-				this.removeActiveClasses();
-				(event.target as any).classList.toggle('active')
-			}
-			}>Admin</Link>
-		</li>)
+		return (
+			<Nav.Link
+				eventKey="3"
+				as={Link}
+				to={ROUTES.ADMIN}
+				onClick={(event: any) => {
+					this.removeActiveClasses();
+					(event.target as any).classList.toggle('active')
+				}
+				}>Admin</Nav.Link>
+		)
 	}
 }
 
