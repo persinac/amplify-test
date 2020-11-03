@@ -1,0 +1,9 @@
+#set( $updateList = {} )
+#foreach( $entry in $ctx.args.updateWRFCENTER_INVENTORY_ITEMInput.keySet() )
+  #set( $discard = $updateList.put($entry, "'$ctx.args.updateWRFCENTER_INVENTORY_ITEMInput[$entry]'") )
+#end
+#set( $update = $updateList.toString().replace("{","").replace("}","") )
+{
+  "version": "2018-05-29",
+  "statements":   ["UPDATE WRFCENTER_INVENTORY_ITEM SET $update WHERE INVENTORY_ITEM_ID=$ctx.args.updateWRFCENTER_INVENTORY_ITEMInput.INVENTORY_ITEM_ID", "SELECT * FROM WRFCENTER_INVENTORY_ITEM WHERE INVENTORY_ITEM_ID=$ctx.args.updateWRFCENTER_INVENTORY_ITEMInput.INVENTORY_ITEM_ID"]
+}
